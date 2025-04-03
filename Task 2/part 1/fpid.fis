@@ -1,0 +1,40 @@
+[System]
+Name='fpid'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='error'
+Range=[-1 1]
+NumMFs=2
+MF1='negative':'gaussmf',[0.7 -1]
+MF2='positive':'gaussmf',[0.7 1]
+
+[Input2]
+Name='rate'
+Range=[-1 1]
+NumMFs=2
+MF1='negative':'gaussmf',[0.7 -1]
+MF2='positive':'gaussmf',[0.7 1]
+
+[Output1]
+Name='u'
+Range=[-2 2]
+NumMFs=3
+MF1='negative':'constant',[-2]
+MF2='zero':'constant',[0]
+MF3='positive':'constant',[2]
+
+[Rules]
+1 1, 1 (1) : 1
+2 1, 2 (1) : 1
+1 2, 2 (1) : 1
+2 2, 3 (1) : 1

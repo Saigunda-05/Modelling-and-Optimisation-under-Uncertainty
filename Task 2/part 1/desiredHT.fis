@@ -1,0 +1,53 @@
+[System]
+Name='desiredHT'
+Type='sugeno'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=8
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='Tout'
+Range=[4 12]
+NumMFs=3
+MF1='low':'zmf',[4.333 7]
+MF2='medium':'gaussmf',[1.416 8]
+MF3='high':'smf',[9 11.67]
+
+[Input2]
+Name='elecPrice'
+Range=[0 0.15]
+NumMFs=2
+MF1='low':'zmf',[0.0125 0.1125]
+MF2='high':'smf',[0.0375 0.1375]
+
+[Input3]
+Name='comfort'
+Range=[0 4]
+NumMFs=3
+MF1='minC':'trimf',[1 1 1]
+MF2='varC':'trimf',[2 2 2]
+MF3='maxC':'trimf',[3 3 3]
+
+[Output1]
+Name='Thouse'
+Range=[19 23]
+NumMFs=3
+MF1='low':'constant',[20]
+MF2='medium':'constant',[21]
+MF3='high':'constant',[22]
+
+[Rules]
+1 1 2, 2 (1) : 1
+2 1 2, 2 (1) : 1
+3 1 2, 3 (1) : 1
+1 2 2, 1 (1) : 1
+2 2 2, 2 (1) : 1
+3 2 2, 2 (1) : 1
+0 0 1, 1 (1) : 1
+0 0 3, 3 (1) : 1
